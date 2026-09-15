@@ -9,6 +9,18 @@ namespace FitnessGym.Tests;
 public class FitnessGymFixture
 {
     /// <summary>
+    /// Момент времени, относительно которого построены тестовые данные.
+    /// Фиксируется один раз при создании фикстуры, чтобы результаты тестов
+    /// не зависели от времени выполнения тестов.
+    /// </summary>
+    public DateTime Now { get; }
+
+    /// <summary>
+    /// Дата, относительно которой построены тестовые данные.
+    /// </summary>
+    public DateOnly Today { get; }
+
+    /// <summary>
     /// Справочник специализаций тренеров.
     /// </summary>
     public readonly List<Specialization> Specializations;
@@ -30,13 +42,14 @@ public class FitnessGymFixture
 
     /// <summary>
     /// Инициализирует тестовые данные: не менее 10 экземпляров каждого класса.
-    /// Даты абонементов и занятий вычисляются относительно текущей даты,
+    /// Даты абонементов и занятий вычисляются относительно зафиксированного момента времени,
     /// поэтому данные остаются пригодными независимо от времени запуска тестов.
     /// </summary>
     public FitnessGymFixture()
     {
-        var today = DateOnly.FromDateTime(DateTime.Today);
-        var currentMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+        Now = DateTime.Now;
+        Today = DateOnly.FromDateTime(Now);
+        var currentMonth = new DateTime(Now.Year, Now.Month, 1);
         var previousMonth = currentMonth.AddMonths(-1);
         var nextMonth = currentMonth.AddMonths(1);
 
@@ -60,20 +73,20 @@ public class FitnessGymFixture
         Clients =
         [
             // Клиенты с просроченным абонементом
-            new Client { Id = 0, PassportNumber = "4501 123456", FullName = "Андреев Алексей Сергеевич", Gender = Gender.Male, BirthDate = new DateOnly(1990, 4, 12), Phone = "+7 (911) 100-00-01", SubscriptionStart = today.AddDays(-60), SubscriptionEnd = today.AddDays(-30) },
-            new Client { Id = 1, PassportNumber = "4502 234567", FullName = "Борисова Марина Владимировна", Gender = Gender.Female, BirthDate = new DateOnly(1985, 11, 25), Phone = "+7 (911) 100-00-02", SubscriptionStart = today.AddDays(-90), SubscriptionEnd = today.AddDays(-7) },
-            new Client { Id = 2, PassportNumber = "4503 345678", FullName = "Васильев Дмитрий Олегович", Gender = Gender.Male, BirthDate = new DateOnly(1978, 2, 18), Phone = "+7 (911) 100-00-03", SubscriptionStart = today.AddDays(-120), SubscriptionEnd = today.AddDays(-1) },
-            new Client { Id = 3, PassportNumber = "4504 456789", FullName = "Гаврилова Елена Николаевна", Gender = Gender.Female, BirthDate = new DateOnly(1992, 6, 30), Phone = "+7 (911) 100-00-04", SubscriptionStart = today.AddDays(-445), SubscriptionEnd = today.AddDays(-45) },
-            new Client { Id = 4, PassportNumber = "4505 567890", FullName = "Дмитриев Павел Андреевич", Gender = Gender.Male, BirthDate = new DateOnly(1996, 9, 5), Phone = "+7 (911) 100-00-05", SubscriptionStart = today.AddDays(-74), SubscriptionEnd = today.AddDays(-14) },
+            new Client { Id = 0, PassportNumber = "4501 123456", FullName = "Андреев Алексей Сергеевич", Gender = Gender.Male, BirthDate = new DateOnly(1990, 4, 12), Phone = "+7 (911) 100-00-01", SubscriptionStart = Today.AddDays(-60), SubscriptionEnd = Today.AddDays(-30) },
+            new Client { Id = 1, PassportNumber = "4502 234567", FullName = "Борисова Марина Владимировна", Gender = Gender.Female, BirthDate = new DateOnly(1985, 11, 25), Phone = "+7 (911) 100-00-02", SubscriptionStart = Today.AddDays(-90), SubscriptionEnd = Today.AddDays(-7) },
+            new Client { Id = 2, PassportNumber = "4503 345678", FullName = "Васильев Дмитрий Олегович", Gender = Gender.Male, BirthDate = new DateOnly(1978, 2, 18), Phone = "+7 (911) 100-00-03", SubscriptionStart = Today.AddDays(-120), SubscriptionEnd = Today.AddDays(-1) },
+            new Client { Id = 3, PassportNumber = "4504 456789", FullName = "Гаврилова Елена Николаевна", Gender = Gender.Female, BirthDate = new DateOnly(1992, 6, 30), Phone = "+7 (911) 100-00-04", SubscriptionStart = Today.AddDays(-445), SubscriptionEnd = Today.AddDays(-45) },
+            new Client { Id = 4, PassportNumber = "4505 567890", FullName = "Дмитриев Павел Андреевич", Gender = Gender.Male, BirthDate = new DateOnly(1996, 9, 5), Phone = "+7 (911) 100-00-05", SubscriptionStart = Today.AddDays(-74), SubscriptionEnd = Today.AddDays(-14) },
             // Клиенты с действующим абонементом
-            new Client { Id = 5, PassportNumber = "4506 678901", FullName = "Егорова Ольга Ивановна", Gender = Gender.Female, BirthDate = new DateOnly(1983, 12, 1), Phone = "+7 (911) 100-00-06", SubscriptionStart = today.AddDays(-90), SubscriptionEnd = today.AddDays(90) },
-            new Client { Id = 6, PassportNumber = "4507 789012", FullName = "Жуков Игорь Валерьевич", Gender = Gender.Male, BirthDate = new DateOnly(1994, 5, 22), Phone = "+7 (911) 100-00-07", SubscriptionStart = today.AddDays(-30), SubscriptionEnd = today.AddDays(30) },
-            new Client { Id = 7, PassportNumber = "4508 890123", FullName = "Зотова Анна Викторовна", Gender = Gender.Female, BirthDate = new DateOnly(1999, 8, 17), Phone = "+7 (911) 100-00-08", SubscriptionStart = today.AddDays(-60), SubscriptionEnd = today.AddDays(15) },
-            new Client { Id = 8, PassportNumber = "4509 901234", FullName = "Иванов Сергей Петрович", Gender = Gender.Male, BirthDate = new DateOnly(1975, 1, 9), Phone = "+7 (911) 100-00-09", SubscriptionStart = today.AddDays(-10), SubscriptionEnd = today.AddDays(80) },
-            new Client { Id = 9, PassportNumber = "4510 012345", FullName = "Козлова Мария Дмитриевна", Gender = Gender.Female, BirthDate = new DateOnly(2001, 3, 28), Phone = "+7 (911) 100-00-10", SubscriptionStart = today.AddDays(-1), SubscriptionEnd = today.AddDays(364) },
+            new Client { Id = 5, PassportNumber = "4506 678901", FullName = "Егорова Ольга Ивановна", Gender = Gender.Female, BirthDate = new DateOnly(1983, 12, 1), Phone = "+7 (911) 100-00-06", SubscriptionStart = Today.AddDays(-90), SubscriptionEnd = Today.AddDays(90) },
+            new Client { Id = 6, PassportNumber = "4507 789012", FullName = "Жуков Игорь Валерьевич", Gender = Gender.Male, BirthDate = new DateOnly(1994, 5, 22), Phone = "+7 (911) 100-00-07", SubscriptionStart = Today.AddDays(-30), SubscriptionEnd = Today.AddDays(30) },
+            new Client { Id = 7, PassportNumber = "4508 890123", FullName = "Зотова Анна Викторовна", Gender = Gender.Female, BirthDate = new DateOnly(1999, 8, 17), Phone = "+7 (911) 100-00-08", SubscriptionStart = Today.AddDays(-60), SubscriptionEnd = Today.AddDays(15) },
+            new Client { Id = 8, PassportNumber = "4509 901234", FullName = "Иванов Сергей Петрович", Gender = Gender.Male, BirthDate = new DateOnly(1975, 1, 9), Phone = "+7 (911) 100-00-09", SubscriptionStart = Today.AddDays(-10), SubscriptionEnd = Today.AddDays(80) },
+            new Client { Id = 9, PassportNumber = "4510 012345", FullName = "Козлова Мария Дмитриевна", Gender = Gender.Female, BirthDate = new DateOnly(2001, 3, 28), Phone = "+7 (911) 100-00-10", SubscriptionStart = Today.AddDays(-1), SubscriptionEnd = Today.AddDays(364) },
             // Клиенты, абонемент которых ещё не начался
-            new Client { Id = 10, PassportNumber = "4511 111111", FullName = "Лебедев Артём Игоревич", Gender = Gender.Male, BirthDate = new DateOnly(2003, 7, 7), Phone = "+7 (911) 100-00-11", SubscriptionStart = today.AddDays(7), SubscriptionEnd = today.AddDays(97) },
-            new Client { Id = 11, PassportNumber = "4512 222222", FullName = "Морозова Татьяна Львовна", Gender = Gender.Female, BirthDate = new DateOnly(1988, 10, 10), Phone = "+7 (911) 100-00-12", SubscriptionStart = today.AddDays(14), SubscriptionEnd = today.AddDays(104) },
+            new Client { Id = 10, PassportNumber = "4511 111111", FullName = "Лебедев Артём Игоревич", Gender = Gender.Male, BirthDate = new DateOnly(2003, 7, 7), Phone = "+7 (911) 100-00-11", SubscriptionStart = Today.AddDays(7), SubscriptionEnd = Today.AddDays(97) },
+            new Client { Id = 11, PassportNumber = "4512 222222", FullName = "Морозова Татьяна Львовна", Gender = Gender.Female, BirthDate = new DateOnly(1988, 10, 10), Phone = "+7 (911) 100-00-12", SubscriptionStart = Today.AddDays(14), SubscriptionEnd = Today.AddDays(104) },
         ];
 
         Trainers =
@@ -101,9 +114,9 @@ public class FitnessGymFixture
             // Занятия в силовом зале в других месяцах
             new TrainingSession { Id = 3, Client = Clients[5], Trainer = Trainers[7], StartsAt = At(previousMonth, 5, 10), EndsAt = At(previousMonth, 5, 11), HallName = "Силовой зал", IsTrial = false },
             new TrainingSession { Id = 4, Client = Clients[5], Trainer = Trainers[0], StartsAt = At(nextMonth, 5, 10), EndsAt = At(nextMonth, 5, 11), HallName = "Силовой зал", IsTrial = false },
-            // Занятие, идущее прямо сейчас, и занятие, окончившееся 10 минут назад
-            new TrainingSession { Id = 5, Client = Clients[9], Trainer = Trainers[7], StartsAt = DateTime.Now.AddMinutes(-30), EndsAt = DateTime.Now.AddMinutes(30), HallName = "Зал групповых занятий", IsTrial = false },
-            new TrainingSession { Id = 6, Client = Clients[0], Trainer = Trainers[6], StartsAt = DateTime.Now.AddMinutes(-70), EndsAt = DateTime.Now.AddMinutes(-10), HallName = "Зал единоборств", IsTrial = false },
+            // Занятие, идущее в зафиксированный момент, и занятие, окончившееся 10 минут назад
+            new TrainingSession { Id = 5, Client = Clients[9], Trainer = Trainers[7], StartsAt = Now.AddMinutes(-30), EndsAt = Now.AddMinutes(30), HallName = "Зал групповых занятий", IsTrial = false },
+            new TrainingSession { Id = 6, Client = Clients[0], Trainer = Trainers[6], StartsAt = Now.AddMinutes(-70), EndsAt = Now.AddMinutes(-10), HallName = "Зал единоборств", IsTrial = false },
             // Остальные занятия — для статистики популярности тренеров
             new TrainingSession { Id = 7, Client = Clients[6], Trainer = Trainers[7], StartsAt = At(currentMonth, 8, 10), EndsAt = At(currentMonth, 8, 11), HallName = "Бассейн", IsTrial = false },
             new TrainingSession { Id = 8, Client = Clients[9], Trainer = Trainers[4], StartsAt = At(currentMonth, 14, 19), EndsAt = At(currentMonth, 14, 20), HallName = "Зал единоборств", IsTrial = false },

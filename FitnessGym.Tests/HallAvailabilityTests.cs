@@ -19,7 +19,7 @@ public class HallAvailabilityTests(FitnessGymFixture fixture) : IClassFixture<Fi
     public void HallAvailabilityShouldBeDeterminedByOverlappingSession(string hallName, bool expectedAvailability)
     {
         // arrange
-        var now = DateTime.Now;
+        var now = fixture.Now;
 
         // act
         var isHallAvailable = !fixture.Sessions.Any(s =>

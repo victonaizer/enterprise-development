@@ -17,7 +17,7 @@ public class SessionsQueryTests(FitnessGymFixture fixture) : IClassFixture<Fitne
     {
         // arrange
         var hallName = "Силовой зал";
-        var today = DateTime.Today;
+        var today = fixture.Today;
         int[] expectedSessionIds = [0, 1, 2];
 
         // act

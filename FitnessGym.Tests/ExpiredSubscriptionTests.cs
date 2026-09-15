@@ -15,7 +15,7 @@ public class ExpiredSubscriptionTests(FitnessGymFixture fixture) : IClassFixture
     public void ExpiredSubscriptionClientsShouldBeReturnedOrderedByFullName()
     {
         // arrange
-        var today = DateOnly.FromDateTime(DateTime.Today);
+        var today = fixture.Today;
         string[] expectedClientNames =
         [
             "Андреев Алексей Сергеевич",
