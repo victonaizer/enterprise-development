@@ -108,35 +108,36 @@ public class FitnessGymFixture
         Sessions =
         [
             // Занятия в силовом зале в текущем месяце
-            new TrainingSession { Id = 0, Client = Clients[5], Trainer = Trainers[7], StartsAt = At(currentMonth, 5, 10), EndsAt = At(currentMonth, 5, 11), HallName = "Силовой зал", IsTrial = false },
-            new TrainingSession { Id = 1, Client = Clients[6], Trainer = Trainers[4], StartsAt = At(currentMonth, 12, 12), EndsAt = At(currentMonth, 12, 13), HallName = "Силовой зал", IsTrial = false },
-            new TrainingSession { Id = 2, Client = Clients[7], Trainer = Trainers[10], StartsAt = At(currentMonth, 20, 18), EndsAt = At(currentMonth, 20, 19), HallName = "Силовой зал", IsTrial = true },
+            new TrainingSession { Id = 0, Client = Clients[5], Trainer = Trainers[7], StartsAt = At(currentMonth, 5, 10), HallName = "Силовой зал", IsTrial = false },
+            new TrainingSession { Id = 1, Client = Clients[6], Trainer = Trainers[4], StartsAt = At(currentMonth, 12, 12), HallName = "Силовой зал", IsTrial = false },
+            new TrainingSession { Id = 2, Client = Clients[7], Trainer = Trainers[10], StartsAt = At(currentMonth, 20, 18), HallName = "Силовой зал", IsTrial = true },
             // Занятия в силовом зале в других месяцах
-            new TrainingSession { Id = 3, Client = Clients[5], Trainer = Trainers[7], StartsAt = At(previousMonth, 5, 10), EndsAt = At(previousMonth, 5, 11), HallName = "Силовой зал", IsTrial = false },
-            new TrainingSession { Id = 4, Client = Clients[5], Trainer = Trainers[0], StartsAt = At(nextMonth, 5, 10), EndsAt = At(nextMonth, 5, 11), HallName = "Силовой зал", IsTrial = false },
-            // Занятие, идущее в зафиксированный момент, и занятие, окончившееся 10 минут назад
+            new TrainingSession { Id = 3, Client = Clients[5], Trainer = Trainers[7], StartsAt = At(previousMonth, 5, 10), HallName = "Силовой зал", IsTrial = false },
+            new TrainingSession { Id = 4, Client = Clients[5], Trainer = Trainers[0], StartsAt = At(nextMonth, 5, 10), HallName = "Силовой зал", IsTrial = false },
+            // Занятие, идущее в зафиксированный момент, и занятие, окончившееся 10 минут назад;
+            // для них время окончания известно, у остальных занятий оно не проставлено
             new TrainingSession { Id = 5, Client = Clients[9], Trainer = Trainers[7], StartsAt = Now.AddMinutes(-30), EndsAt = Now.AddMinutes(30), HallName = "Зал групповых занятий", IsTrial = false },
             new TrainingSession { Id = 6, Client = Clients[0], Trainer = Trainers[6], StartsAt = Now.AddMinutes(-70), EndsAt = Now.AddMinutes(-10), HallName = "Зал единоборств", IsTrial = false },
             // Остальные занятия — для статистики популярности тренеров
-            new TrainingSession { Id = 7, Client = Clients[6], Trainer = Trainers[7], StartsAt = At(currentMonth, 8, 10), EndsAt = At(currentMonth, 8, 11), HallName = "Бассейн", IsTrial = false },
-            new TrainingSession { Id = 8, Client = Clients[9], Trainer = Trainers[4], StartsAt = At(currentMonth, 14, 19), EndsAt = At(currentMonth, 14, 20), HallName = "Зал единоборств", IsTrial = false },
-            new TrainingSession { Id = 9, Client = Clients[8], Trainer = Trainers[10], StartsAt = At(previousMonth, 15, 8), EndsAt = At(previousMonth, 15, 9), HallName = "Бассейн", IsTrial = false },
-            new TrainingSession { Id = 10, Client = Clients[5], Trainer = Trainers[1], StartsAt = At(currentMonth, 22, 9), EndsAt = At(currentMonth, 22, 10), HallName = "Зал групповых занятий", IsTrial = true },
-            new TrainingSession { Id = 11, Client = Clients[6], Trainer = Trainers[7], StartsAt = At(previousMonth, 18, 17), EndsAt = At(previousMonth, 18, 18), HallName = "Силовой зал", IsTrial = false },
-            new TrainingSession { Id = 12, Client = Clients[7], Trainer = Trainers[4], StartsAt = At(nextMonth, 10, 11), EndsAt = At(nextMonth, 10, 12), HallName = "Кардио-зал", IsTrial = true },
-            new TrainingSession { Id = 13, Client = Clients[11], Trainer = Trainers[10], StartsAt = At(nextMonth, 3, 7), EndsAt = At(nextMonth, 3, 8), HallName = "Бассейн", IsTrial = true },
-            new TrainingSession { Id = 14, Client = Clients[1], Trainer = Trainers[1], StartsAt = At(previousMonth, 22, 20), EndsAt = At(previousMonth, 22, 21), HallName = "Зал единоборств", IsTrial = false },
-            new TrainingSession { Id = 15, Client = Clients[2], Trainer = Trainers[6], StartsAt = At(previousMonth, 28, 18), EndsAt = At(previousMonth, 28, 19), HallName = "Зал групповых занятий", IsTrial = false },
-            new TrainingSession { Id = 16, Client = Clients[8], Trainer = Trainers[7], StartsAt = At(currentMonth, 25, 8), EndsAt = At(currentMonth, 25, 9), HallName = "Бассейн", IsTrial = false },
-            new TrainingSession { Id = 17, Client = Clients[0], Trainer = Trainers[4], StartsAt = At(previousMonth, 10, 19), EndsAt = At(previousMonth, 10, 20), HallName = "Кардио-зал", IsTrial = false },
-            new TrainingSession { Id = 18, Client = Clients[5], Trainer = Trainers[10], StartsAt = At(currentMonth, 9, 21), EndsAt = At(currentMonth, 9, 22), HallName = "Зал единоборств", IsTrial = false },
-            new TrainingSession { Id = 19, Client = Clients[9], Trainer = Trainers[1], StartsAt = At(currentMonth, 16, 7), EndsAt = At(currentMonth, 16, 8), HallName = "Кардио-зал", IsTrial = false },
-            new TrainingSession { Id = 20, Client = Clients[7], Trainer = Trainers[8], StartsAt = At(previousMonth, 3, 18), EndsAt = At(previousMonth, 3, 19), HallName = "Бассейн", IsTrial = true },
-            new TrainingSession { Id = 21, Client = Clients[6], Trainer = Trainers[4], StartsAt = At(nextMonth, 14, 18), EndsAt = At(nextMonth, 14, 19), HallName = "Зал единоборств", IsTrial = false },
-            new TrainingSession { Id = 22, Client = Clients[1], Trainer = Trainers[2], StartsAt = At(previousMonth, 8, 8), EndsAt = At(previousMonth, 8, 9), HallName = "Кардио-зал", IsTrial = true },
-            new TrainingSession { Id = 23, Client = Clients[8], Trainer = Trainers[9], StartsAt = At(currentMonth, 17, 20), EndsAt = At(currentMonth, 17, 21), HallName = "Бассейн", IsTrial = false },
-            new TrainingSession { Id = 24, Client = Clients[9], Trainer = Trainers[3], StartsAt = At(nextMonth, 21, 10), EndsAt = At(nextMonth, 21, 11), HallName = "Зал групповых занятий", IsTrial = true },
-            new TrainingSession { Id = 25, Client = Clients[5], Trainer = Trainers[11], StartsAt = At(currentMonth, 27, 8), EndsAt = At(currentMonth, 27, 9), HallName = "Кардио-зал", IsTrial = false },
+            new TrainingSession { Id = 7, Client = Clients[6], Trainer = Trainers[7], StartsAt = At(currentMonth, 8, 10), HallName = "Бассейн", IsTrial = false },
+            new TrainingSession { Id = 8, Client = Clients[9], Trainer = Trainers[4], StartsAt = At(currentMonth, 14, 19), HallName = "Зал единоборств", IsTrial = false },
+            new TrainingSession { Id = 9, Client = Clients[8], Trainer = Trainers[10], StartsAt = At(previousMonth, 15, 8), HallName = "Бассейн", IsTrial = false },
+            new TrainingSession { Id = 10, Client = Clients[5], Trainer = Trainers[1], StartsAt = At(currentMonth, 22, 9), HallName = "Зал групповых занятий", IsTrial = true },
+            new TrainingSession { Id = 11, Client = Clients[6], Trainer = Trainers[7], StartsAt = At(previousMonth, 18, 17), HallName = "Силовой зал", IsTrial = false },
+            new TrainingSession { Id = 12, Client = Clients[7], Trainer = Trainers[4], StartsAt = At(nextMonth, 10, 11), HallName = "Кардио-зал", IsTrial = true },
+            new TrainingSession { Id = 13, Client = Clients[11], Trainer = Trainers[10], StartsAt = At(nextMonth, 3, 7), HallName = "Бассейн", IsTrial = true },
+            new TrainingSession { Id = 14, Client = Clients[1], Trainer = Trainers[1], StartsAt = At(previousMonth, 22, 20), HallName = "Зал единоборств", IsTrial = false },
+            new TrainingSession { Id = 15, Client = Clients[2], Trainer = Trainers[6], StartsAt = At(previousMonth, 28, 18), HallName = "Зал групповых занятий", IsTrial = false },
+            new TrainingSession { Id = 16, Client = Clients[8], Trainer = Trainers[7], StartsAt = At(currentMonth, 25, 8), HallName = "Бассейн", IsTrial = false },
+            new TrainingSession { Id = 17, Client = Clients[0], Trainer = Trainers[4], StartsAt = At(previousMonth, 10, 19), HallName = "Кардио-зал", IsTrial = false },
+            new TrainingSession { Id = 18, Client = Clients[5], Trainer = Trainers[10], StartsAt = At(currentMonth, 9, 21), HallName = "Зал единоборств", IsTrial = false },
+            new TrainingSession { Id = 19, Client = Clients[9], Trainer = Trainers[1], StartsAt = At(currentMonth, 16, 7), HallName = "Кардио-зал", IsTrial = false },
+            new TrainingSession { Id = 20, Client = Clients[7], Trainer = Trainers[8], StartsAt = At(previousMonth, 3, 18), HallName = "Бассейн", IsTrial = true },
+            new TrainingSession { Id = 21, Client = Clients[6], Trainer = Trainers[4], StartsAt = At(nextMonth, 14, 18), HallName = "Зал единоборств", IsTrial = false },
+            new TrainingSession { Id = 22, Client = Clients[1], Trainer = Trainers[2], StartsAt = At(previousMonth, 8, 8), HallName = "Кардио-зал", IsTrial = true },
+            new TrainingSession { Id = 23, Client = Clients[8], Trainer = Trainers[9], StartsAt = At(currentMonth, 17, 20), HallName = "Бассейн", IsTrial = false },
+            new TrainingSession { Id = 24, Client = Clients[9], Trainer = Trainers[3], StartsAt = At(nextMonth, 21, 10), HallName = "Зал групповых занятий", IsTrial = true },
+            new TrainingSession { Id = 25, Client = Clients[5], Trainer = Trainers[11], StartsAt = At(currentMonth, 27, 8), HallName = "Кардио-зал", IsTrial = false },
         ];
     }
 }

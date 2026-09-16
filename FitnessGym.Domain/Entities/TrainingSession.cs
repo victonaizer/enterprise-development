@@ -27,8 +27,10 @@ public class TrainingSession
 
     /// <summary>
     /// Дата и время окончания занятия.
+    /// В момент записи клиента точное время окончания может быть неизвестно,
+    /// поэтому значение может не быть проставлено.
     /// </summary>
-    public required DateTime EndsAt { get; set; }
+    public DateTime? EndsAt { get; set; }
 
     /// <summary>
     /// Название зала, в котором проходит занятие.

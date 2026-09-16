@@ -1,5 +1,3 @@
-using FitnessGym.Domain.Entities;
-
 namespace FitnessGym.Tests;
 
 /// <summary>

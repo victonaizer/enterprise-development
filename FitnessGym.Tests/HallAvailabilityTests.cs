@@ -9,6 +9,7 @@ public class HallAvailabilityTests(FitnessGymFixture fixture) : IClassFixture<Fi
     /// <summary>
     /// Должен определить, что зал недоступен, если в нём идёт занятие, пересекающееся по времени с текущим моментом,
     /// и доступен, если занятие уже закончилось или в зале ещё не было занятий.
+    /// Занятия с ещё не проставленным временем окончания в проверке не участвуют.
     /// </summary>
     /// <param name="hallName">Название проверяемого зала.</param>
     /// <param name="expectedAvailability">Ожидаемая доступность зала.</param>
@@ -23,7 +24,7 @@ public class HallAvailabilityTests(FitnessGymFixture fixture) : IClassFixture<Fi
 
         // act
         var isHallAvailable = !fixture.Sessions.Any(s =>
-            s.HallName == hallName && s.StartsAt <= now && now < s.EndsAt);
+            s.HallName == hallName && s.EndsAt != null && s.StartsAt <= now && now < s.EndsAt.Value);
 
         // assert
         Assert.Equal(expectedAvailability, isHallAvailable);
