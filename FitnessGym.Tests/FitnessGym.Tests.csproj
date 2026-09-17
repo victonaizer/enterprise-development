@@ -19,6 +19,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\FitnessGym.Domain\FitnessGym.Domain.csproj"/>
+        <ProjectReference Include="..\FitnessGym.Api\FitnessGym.Api.csproj"/>
     </ItemGroup>
 
 </Project>
