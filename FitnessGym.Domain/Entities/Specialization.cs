@@ -3,7 +3,7 @@ namespace FitnessGym.Domain.Entities;
 /// <summary>
 /// Специализация тренера (справочник).
 /// </summary>
-public class Specialization
+public class Specialization : IIdentified
 {
     /// <summary>
     /// Идентификатор.

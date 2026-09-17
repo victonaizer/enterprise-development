@@ -5,7 +5,7 @@ namespace FitnessGym.Domain.Entities;
 /// <summary>
 /// Человек — базовый класс с персональными данными, общими для клиента и тренера.
 /// </summary>
-public abstract class Person
+public abstract class Person : IIdentified
 {
     /// <summary>
     /// Идентификатор.

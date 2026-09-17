@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="FitnessGym.Api/FitnessGym.Api.csproj" />
   <Project Path="FitnessGym.Domain/FitnessGym.Domain.csproj" />
   <Project Path="FitnessGym.Tests/FitnessGym.Tests.csproj" />
 </Solution>

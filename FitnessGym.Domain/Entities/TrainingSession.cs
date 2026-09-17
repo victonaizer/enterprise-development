@@ -3,7 +3,7 @@ namespace FitnessGym.Domain.Entities;
 /// <summary>
 /// Запись клиента на персональное занятие к тренеру.
 /// </summary>
-public class TrainingSession
+public class TrainingSession : IIdentified
 {
     /// <summary>
     /// Идентификатор.
