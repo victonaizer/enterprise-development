@@ -239,7 +239,7 @@ public class ClubService(
         Gender = trainer.Gender,
         BirthDate = trainer.BirthDate,
         SpecializationId = trainer.Specialization.Id,
-        SpecializationName = trainer.Specialization.Name,
+        SpecializationName = specializationRepository.GetById(trainer.Specialization.Id)?.Name,
         ExperienceYears = trainer.ExperienceYears,
     };
 

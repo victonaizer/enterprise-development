@@ -127,6 +127,25 @@ public class ClubServiceTrainersTests(FitnessGymFixture fixture) : IClassFixture
     }
 
     /// <summary>
+    /// Должен отражать обновление названия специализации в данных тренеров.
+    /// </summary>
+    [Fact]
+    public void UpdateSpecializationShouldBeReflectedInTrainerDtos()
+    {
+        // arrange
+        var service = CreateService();
+        var specializationId = fixture.Trainers[1].Specialization.Id;
+        var updatedSpecialization = new SpecializationDto { Id = specializationId, Name = "Хатха-йога" };
+
+        // act
+        service.UpdateSpecialization(specializationId, updatedSpecialization);
+        var trainer = service.GetTrainer(1);
+
+        // assert
+        Assert.Equal("Хатха-йога", trainer?.SpecializationName);
+    }
+
+    /// <summary>
     /// Должен запрещать удалять тренера, у которого есть записи на занятия.
     /// </summary>
     [Fact]
