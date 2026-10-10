@@ -19,11 +19,15 @@
 - `src/FitnessGym.Contracts` — DTO с валидационными атрибутами и интерфейсы сервисов.
 - `src/FitnessGym.Application` — реализация сервисов: маппинг сущностей в DTO, бизнес-логика, аналитические запросы.
 - `src/FitnessGym.Infrastructure.InMemory` — реализации репозиториев поверх коллекций в памяти.
+- `src/FitnessGym.Infrastructure.PostgreSql` — реализации репозиториев поверх Entity Framework Core и PostgreSQL.
 - `src/FitnessGym.Api` — REST API сервер (ASP.NET Core, .NET 10).
+- `src/FitnessGym.ServiceDefaults` — общие сервисы Aspire: service discovery, resilience, health checks, OpenTelemetry.
+- `src/FitnessGym.AppHost` — оркестратор .NET Aspire: запуск PostgreSQL и API-сервера.
 - `tests/FitnessGym.Tests` — unit-тесты (xUnit v3).
 
-Хранение данных абстрагировано за интерфейсами репозиториев: переход с коллекций
-в памяти на базу данных выполняется заменой реализаций в конфигурации DI.
+Хранение данных абстрагировано за интерфейсами репозиториев: переход между
+коллекциями в памяти и базой данных выполняется заменой реализаций
+в конфигурации DI.
 
 ## Лабораторная работа №1 «Классы»
 
@@ -39,17 +43,7 @@
 ## Лабораторная работа №2 «Сервер»
 
 REST API сервер, реализующий базовые CRUD-операции над сущностями
-и предоставляющий результаты аналитических запросов. Данные хранятся в памяти
-в виде коллекций.
-
-### Запуск
-
-```bash
-dotnet run --project FitnessGym.Api
-```
-
-Сервер доступен на `http://localhost:5080`, OpenAPI-спецификация —
-`http://localhost:5080/openapi/v1.json`.
+и предоставляющий результаты аналитических запросов.
 
 ### CRUD-эндпоинты
 
@@ -70,6 +64,28 @@ dotnet run --project FitnessGym.Api
 | Клиенты с просроченным абонементом | `GET /api/clients/expired` |
 | Занятия за текущий месяц в зале | `GET /api/sessions/current-month?hallName=...` |
 | Топ-5 популярных тренеров | `GET /api/trainers/popular?count=5` |
+
+## Лабораторная работа №3 «ORM»
+
+Хранение данных перенесено с коллекций в памяти на PostgreSQL:
+
+- `FitnessGymDbContext` (Entity Framework Core, провайдер Npgsql); наследование
+  `Client`/`Trainer` от `Person` отображается по стратегии table-per-type.
+- Миграция создаёт таблицы и заполняет справочник специализаций (`HasData`);
+  клиенты, тренеры и записи на занятия наполняются при старте приложения
+  (`DbInitializer`) — их даты вычисляются относительно текущего момента времени.
+- Оркестрация через **.NET Aspire 13.5**: AppHost запускает контейнер
+  PostgreSQL, ожидает его готовности и стартует API-сервер с инъекцией строки
+  подключения.
+
+### Запуск
+
+```bash
+dotnet run --project src/FitnessGym.AppHost
+```
+
+Требуется запущенный Docker. Aspire Dashboard откроется автоматически;
+API-сервер доступен по адресу, указанному для ресурса `api` в дашборде.
 
 ## Запуск тестов
 

@@ -3,6 +3,9 @@
   <Project Path="src/FitnessGym.Contracts/FitnessGym.Contracts.csproj" />
   <Project Path="src/FitnessGym.Application/FitnessGym.Application.csproj" />
   <Project Path="src/FitnessGym.Infrastructure.InMemory/FitnessGym.Infrastructure.InMemory.csproj" />
+  <Project Path="src/FitnessGym.Infrastructure.PostgreSql/FitnessGym.Infrastructure.PostgreSql.csproj" />
   <Project Path="src/FitnessGym.Api/FitnessGym.Api.csproj" />
+  <Project Path="src/FitnessGym.ServiceDefaults/FitnessGym.ServiceDefaults.csproj" />
+  <Project Path="src/FitnessGym.AppHost/FitnessGym.AppHost.csproj" />
   <Project Path="tests/FitnessGym.Tests/FitnessGym.Tests.csproj" />
 </Solution>

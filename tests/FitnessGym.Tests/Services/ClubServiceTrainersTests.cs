@@ -134,12 +134,12 @@ public class ClubServiceTrainersTests(FitnessGymFixture fixture) : IClassFixture
     {
         // arrange
         var service = CreateService();
-        var specializationId = fixture.Trainers[1].Specialization.Id;
+        var specializationId = fixture.Trainers[1].Specialization.Id; // Пилатес
         var updatedSpecialization = new SpecializationDto { Id = specializationId, Name = "Хатха-йога" };
 
         // act
         service.UpdateSpecialization(specializationId, updatedSpecialization);
-        var trainer = service.GetTrainer(1);
+        var trainer = service.GetTrainer(101); // Кузнецова Наталья Сергеевна
 
         // assert
         Assert.Equal("Хатха-йога", trainer?.SpecializationName);

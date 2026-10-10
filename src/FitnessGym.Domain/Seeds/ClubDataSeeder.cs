@@ -61,18 +61,18 @@ public static class ClubDataSeeder
 
         List<Trainer> trainers =
         [
-            new Trainer { Id = 0, PassportNumber = "4601 123456", FullName = "Соколов Виктор Александрович", Gender = Gender.Male, BirthDate = new DateOnly(1990, 6, 15), Specialization = specializations[2], ExperienceYears = 3 },
-            new Trainer { Id = 1, PassportNumber = "4602 234567", FullName = "Кузнецова Наталья Сергеевна", Gender = Gender.Female, BirthDate = new DateOnly(1988, 3, 24), Specialization = specializations[1], ExperienceYears = 5 },
-            new Trainer { Id = 2, PassportNumber = "4603 345678", FullName = "Попов Максим Игоревич", Gender = Gender.Male, BirthDate = new DateOnly(1998, 11, 2), Specialization = specializations[4], ExperienceYears = 2 },
-            new Trainer { Id = 3, PassportNumber = "4604 456789", FullName = "Лебедева Дарья Александровна", Gender = Gender.Female, BirthDate = new DateOnly(1985, 7, 19), Specialization = specializations[0], ExperienceYears = 8 },
-            new Trainer { Id = 4, PassportNumber = "4605 567890", FullName = "Новиков Артур Валерьевич", Gender = Gender.Male, BirthDate = new DateOnly(1980, 1, 30), Specialization = specializations[5], ExperienceYears = 12 },
-            new Trainer { Id = 5, PassportNumber = "4606 678901", FullName = "Фёдорова Ксения Павловна", Gender = Gender.Female, BirthDate = new DateOnly(1995, 9, 8), Specialization = specializations[6], ExperienceYears = 4 },
-            new Trainer { Id = 6, PassportNumber = "4607 789012", FullName = "Морозов Георгий Львович", Gender = Gender.Male, BirthDate = new DateOnly(1982, 12, 11), Specialization = specializations[3], ExperienceYears = 10 },
-            new Trainer { Id = 7, PassportNumber = "4608 890123", FullName = "Волкова Ирина Дмитриевна", Gender = Gender.Female, BirthDate = new DateOnly(1987, 5, 27), Specialization = specializations[7], ExperienceYears = 7 },
-            new Trainer { Id = 8, PassportNumber = "4609 901234", FullName = "Зайцев Роман Олегович", Gender = Gender.Male, BirthDate = new DateOnly(2000, 2, 14), Specialization = specializations[8], ExperienceYears = 1 },
-            new Trainer { Id = 9, PassportNumber = "4610 012345", FullName = "Павлова Светлана Юрьевна", Gender = Gender.Female, BirthDate = new DateOnly(1991, 8, 3), Specialization = specializations[0], ExperienceYears = 6 },
-            new Trainer { Id = 10, PassportNumber = "4611 111111", FullName = "Семёнов Кирилл Андреевич", Gender = Gender.Male, BirthDate = new DateOnly(1979, 4, 21), Specialization = specializations[2], ExperienceYears = 15 },
-            new Trainer { Id = 11, PassportNumber = "4612 222222", FullName = "Голубева Вероника Игоревна", Gender = Gender.Female, BirthDate = new DateOnly(1993, 10, 16), Specialization = specializations[9], ExperienceYears = 9 },
+            new Trainer { Id = 100, PassportNumber = "4601 123456", FullName = "Соколов Виктор Александрович", Gender = Gender.Male, BirthDate = new DateOnly(1990, 6, 15), Specialization = specializations[2], ExperienceYears = 3 },
+            new Trainer { Id = 101, PassportNumber = "4602 234567", FullName = "Кузнецова Наталья Сергеевна", Gender = Gender.Female, BirthDate = new DateOnly(1988, 3, 24), Specialization = specializations[1], ExperienceYears = 5 },
+            new Trainer { Id = 102, PassportNumber = "4603 345678", FullName = "Попов Максим Игоревич", Gender = Gender.Male, BirthDate = new DateOnly(1998, 11, 2), Specialization = specializations[4], ExperienceYears = 2 },
+            new Trainer { Id = 103, PassportNumber = "4604 456789", FullName = "Лебедева Дарья Александровна", Gender = Gender.Female, BirthDate = new DateOnly(1985, 7, 19), Specialization = specializations[0], ExperienceYears = 8 },
+            new Trainer { Id = 104, PassportNumber = "4605 567890", FullName = "Новиков Артур Валерьевич", Gender = Gender.Male, BirthDate = new DateOnly(1980, 1, 30), Specialization = specializations[5], ExperienceYears = 12 },
+            new Trainer { Id = 105, PassportNumber = "4606 678901", FullName = "Фёдорова Ксения Павловна", Gender = Gender.Female, BirthDate = new DateOnly(1995, 9, 8), Specialization = specializations[6], ExperienceYears = 4 },
+            new Trainer { Id = 106, PassportNumber = "4607 789012", FullName = "Морозов Георгий Львович", Gender = Gender.Male, BirthDate = new DateOnly(1982, 12, 11), Specialization = specializations[3], ExperienceYears = 10 },
+            new Trainer { Id = 107, PassportNumber = "4608 890123", FullName = "Волкова Ирина Дмитриевна", Gender = Gender.Female, BirthDate = new DateOnly(1987, 5, 27), Specialization = specializations[7], ExperienceYears = 7 },
+            new Trainer { Id = 108, PassportNumber = "4609 901234", FullName = "Зайцев Роман Олегович", Gender = Gender.Male, BirthDate = new DateOnly(2000, 2, 14), Specialization = specializations[8], ExperienceYears = 1 },
+            new Trainer { Id = 109, PassportNumber = "4610 012345", FullName = "Павлова Светлана Юрьевна", Gender = Gender.Female, BirthDate = new DateOnly(1991, 8, 3), Specialization = specializations[0], ExperienceYears = 6 },
+            new Trainer { Id = 110, PassportNumber = "4611 111111", FullName = "Семёнов Кирилл Андреевич", Gender = Gender.Male, BirthDate = new DateOnly(1979, 4, 21), Specialization = specializations[2], ExperienceYears = 15 },
+            new Trainer { Id = 111, PassportNumber = "4612 222222", FullName = "Голубева Вероника Игоревна", Gender = Gender.Female, BirthDate = new DateOnly(1993, 10, 16), Specialization = specializations[9], ExperienceYears = 9 },
         ];
 
         List<TrainingSession> sessions =

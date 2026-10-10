@@ -2,12 +2,13 @@ using System.Text.Json.Serialization;
 using FitnessGym.Application.Services;
 using FitnessGym.Contracts.Interfaces;
 using FitnessGym.Domain.Interfaces;
-using FitnessGym.Domain.Seeds;
-using FitnessGym.Infrastructure.InMemory;
+using FitnessGym.Infrastructure.PostgreSql;
+using FitnessGym.ServiceDefaults;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var data = ClubDataSeeder.Create();
+builder.AddServiceDefaults();
 
 builder.Services
     .AddControllers()
@@ -15,14 +16,22 @@ builder.Services
 
 builder.Services.AddOpenApi();
 
-builder.Services.AddSingleton<IClientRepository>(_ => new InMemoryClientRepository(data.Clients));
-builder.Services.AddSingleton<ITrainerRepository>(_ => new InMemoryTrainerRepository(data.Trainers));
-builder.Services.AddSingleton<ISpecializationRepository>(_ => new InMemorySpecializationRepository(data.Specializations));
-builder.Services.AddSingleton<ITrainingSessionRepository>(_ => new InMemoryTrainingSessionRepository(data.Sessions));
-builder.Services.AddSingleton<IClubService, ClubService>();
+builder.AddNpgsqlDbContext<FitnessGymDbContext>("fitnessgym");
+
+builder.Services.AddScoped<IClientRepository, PostgreSqlClientRepository>();
+builder.Services.AddScoped<ITrainerRepository, PostgreSqlTrainerRepository>();
+builder.Services.AddScoped<ISpecializationRepository, PostgreSqlSpecializationRepository>();
+builder.Services.AddScoped<ITrainingSessionRepository, PostgreSqlTrainingSessionRepository>();
+builder.Services.AddScoped<IClubService, ClubService>();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    DbInitializer.Initialize(scope.ServiceProvider.GetRequiredService<FitnessGymDbContext>());
+}
+
+app.MapDefaultEndpoints();
 app.MapOpenApi();
 app.MapControllers();
 

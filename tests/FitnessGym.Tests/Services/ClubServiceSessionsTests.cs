@@ -74,7 +74,7 @@ public class ClubServiceSessionsTests(FitnessGymFixture fixture) : IClassFixture
         var newSession = new TrainingSessionDto
         {
             ClientId = 5,
-            TrainerId = 7,
+            TrainerId = 107, // Волкова Ирина Дмитриевна
             StartsAt = fixture.Now.AddDays(1),
             HallName = "Силовой зал",
             IsTrial = false,
