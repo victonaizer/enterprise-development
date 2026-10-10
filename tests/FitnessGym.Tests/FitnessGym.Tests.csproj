@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
+        <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="xunit.v3" Version="4.0.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Using Include="Xunit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\FitnessGym.Application\FitnessGym.Application.csproj"/>
+        <ProjectReference Include="..\..\src\FitnessGym.Contracts\FitnessGym.Contracts.csproj"/>
+        <ProjectReference Include="..\..\src\FitnessGym.Domain\FitnessGym.Domain.csproj"/>
+        <ProjectReference Include="..\..\src\FitnessGym.Infrastructure.InMemory\FitnessGym.Infrastructure.InMemory.csproj"/>
+    </ItemGroup>
+
+</Project>
